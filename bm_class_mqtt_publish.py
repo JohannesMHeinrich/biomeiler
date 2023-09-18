@@ -73,7 +73,6 @@ class bm_class_mqtt_publish():
                 print(f"Send `{data}` to topic `{self.topic}`")
             else:
                 print(f"Failed to send message to topic {self.topic}")
-            msg_count += 1
 
 
     def run(self):
@@ -83,5 +82,5 @@ class bm_class_mqtt_publish():
 
 
 
-c = bm_class_mqtt_publish()
-c.run()
+# c = bm_class_mqtt_publish()
+# c.run()
