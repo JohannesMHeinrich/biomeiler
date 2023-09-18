@@ -29,8 +29,6 @@ class c_program():
         self.start_6147_weather_station()
         self.start_arduino_hum_and_temp()
 
-        self.test()
-
     def start_CO2(self):
 
         self.c_CO2 = bm_class_CO2()
@@ -44,13 +42,16 @@ class c_program():
         self.c_hum_and_temp = bm_class_arduino_hum_and_temp()
         self.c_hum_and_temp.start_reading_in_thread()
 
-    def test(self):
+    def run(self, intervall = 900):
+
         while True:
-            time.sleep(5)
 
             print(self.c_CO2.CO2)
             print(self.c_6147.temperature)
             print(self.c_hum_and_temp.rel_hum_1)
 
+            time.sleep(intervall)
+
 
 c = c_program()
+c.run(5)
