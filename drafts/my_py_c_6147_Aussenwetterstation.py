@@ -12,13 +12,13 @@ from datetime import datetime
 from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_outdoor_weather import BrickletOutdoorWeather
 
-from my_file_writer import my_writer
+# from my_file_writer import my_writer
 
-from my_py_c_influxdb_2_1 import my_py_c_influxdb_2_1
+# from my_py_c_influxdb_2_1 import my_py_c_influxdb_2_1
 
 
-# initialize connector to influx db
-influxDB = my_py_c_influxdb_2_1()
+# # initialize connector to influx db
+# influxDB = my_py_c_influxdb_2_1()
 
 
 # Callback function for station data callback
@@ -60,16 +60,23 @@ def cb_station_data(identifier, temperature, humidity, wind_speed, gust_speed, r
     elif wind_direction == BrickletOutdoorWeather.WIND_DIRECTION_ERROR:
         wind_direction = -100
     
-    # write to .txt file
-    my_writer('Weather', [str(temperature/10.0) + " C", str(humidity) + " %RH", str(wind_speed/10.0) + " m/s", str(gust_speed/10.0) + " m/s", str(rain/10.0) + " mm", str(wind_direction)])
+    # # write to .txt file
+    # my_writer('Weather', [str(temperature/10.0) + " C", str(humidity) + " %RH", str(wind_speed/10.0) + " m/s", str(gust_speed/10.0) + " m/s", str(rain/10.0) + " mm", str(wind_direction)])
     
-    # write to influxdb 2.1
-    influxDB.write_data_point("Wetterstation", "Temperatur", float(temperature/10.0), datetime.utcnow())
-    influxDB.write_data_point("Wetterstation", "rel. Feuchtigkeit", float(humidity), datetime.utcnow())
-    influxDB.write_data_point("Wetterstation", "Windgeschwindigkeit", float(wind_speed/10.0), datetime.utcnow())
-    influxDB.write_data_point("Wetterstation", "Windboen", float(gust_speed/10.0), datetime.utcnow())
-    influxDB.write_data_point("Wetterstation", "Regen", float(rain/10.0), datetime.utcnow())
-    influxDB.write_data_point("Wetterstation", "Windrichtung", float(wind_direction), datetime.utcnow()) 
+    # # write to influxdb 2.1
+    # influxDB.write_data_point("Wetterstation", "Temperatur", float(temperature/10.0), datetime.utcnow())
+    # influxDB.write_data_point("Wetterstation", "rel. Feuchtigkeit", float(humidity), datetime.utcnow())
+    # influxDB.write_data_point("Wetterstation", "Windgeschwindigkeit", float(wind_speed/10.0), datetime.utcnow())
+    # influxDB.write_data_point("Wetterstation", "Windboen", float(gust_speed/10.0), datetime.utcnow())
+    # influxDB.write_data_point("Wetterstation", "Regen", float(rain/10.0), datetime.utcnow())
+    # influxDB.write_data_point("Wetterstation", "Windrichtung", float(wind_direction), datetime.utcnow()) 
+
+    print(float(temperature/10.0), datetime.utcnow())
+    print(float(humidity), datetime.utcnow())
+    print(float(wind_speed/10.0), datetime.utcnow())
+    print(float(gust_speed/10.0), datetime.utcnow())
+    print(float(rain/10.0), datetime.utcnow())
+    print(float(wind_direction), datetime.utcnow())
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
