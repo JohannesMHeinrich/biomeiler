@@ -29,6 +29,8 @@ class c_program():
         self.start_6147_weather_station()
         self.start_arduino_hum_and_temp()
 
+        self.test()
+
     def start_CO2(self):
 
         self.c_CO2 = bm_class_CO2()
