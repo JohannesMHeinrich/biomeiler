@@ -53,34 +53,38 @@ class bm_class_arduino_hum_and_temp():
 
     def read_serial(self):
 
-        b = str(self.ser.readline()).split(',')
-        
-        try:
-        
-            self.time_now = datetime.utcnow()
+        while True:
 
-            self.rel_hum_1 = float(b[0][10:-2])
-            self.rel_hum_2 = float(b[1][9:-2])
-            self.rel_hum_3 = float(b[2][9:-2])
+            b = str(self.ser.readline()).split(',')
             
-            self.temp_01 = float(b[3][25:-2])
-            self.temp_02 = float(b[4][25:-2])
-            self.temp_03 = float(b[5][25:-2])
-            self.temp_04 = float(b[6][25:-2])
-            self.temp_05 = float(b[7][25:-2])
-            self.temp_06 = float(b[8][25:-2])
-            self.temp_07 = float(b[9][25:-2])
-            self.temp_08 = float(b[10][25:-2])
-            self.temp_09 = float(b[11][25:-2])
-            self.temp_10 = float(b[12][25:-2])
-            self.temp_11 = float(b[13][25:-2])
-            self.temp_12 = float(b[14][25:-2])
+            try:
             
-        except:
-            
-            print("---> arduino: could not convert to floats")
-            print("     trying again in 5s")
-            time.sleep(5)
+                self.time_now = datetime.utcnow()
+
+                self.rel_hum_1 = float(b[0][10:-2])
+                self.rel_hum_2 = float(b[1][9:-2])
+                self.rel_hum_3 = float(b[2][9:-2])
+                
+                self.temp_01 = float(b[3][25:-2])
+                self.temp_02 = float(b[4][25:-2])
+                self.temp_03 = float(b[5][25:-2])
+                self.temp_04 = float(b[6][25:-2])
+                self.temp_05 = float(b[7][25:-2])
+                self.temp_06 = float(b[8][25:-2])
+                self.temp_07 = float(b[9][25:-2])
+                self.temp_08 = float(b[10][25:-2])
+                self.temp_09 = float(b[11][25:-2])
+                self.temp_10 = float(b[12][25:-2])
+                self.temp_11 = float(b[13][25:-2])
+                self.temp_12 = float(b[14][25:-2])
+                
+            except:
+                
+                print("---> arduino: could not convert to floats")
+                print("     trying again in 5s")
+                time.sleep(5)
+
+            time.sleep(60)
 
     def start_reading_in_thread(self):
 
