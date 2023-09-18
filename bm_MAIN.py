@@ -45,7 +45,7 @@ class c_program():
         self.c_hum_and_temp.start_reading_in_thread()
 
     def test(self):
-        while true:
+        while True:
             time.sleep(5)
 
             print(self.c_CO2.CO2)
