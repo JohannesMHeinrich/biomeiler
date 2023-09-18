@@ -42,7 +42,7 @@ class c_program():
     def start_arduino_hum_and_temp(self):
 
         self.c_hum_and_temp = bm_class_arduino_hum_and_temp()
-        self.c_hum_and_temp.start_reading_in_loop()
+        self.c_hum_and_temp.start_reading_in_thread()
 
     def test(self):
         while true:

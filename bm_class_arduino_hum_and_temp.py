@@ -18,6 +18,7 @@ tbf
 import serial
 from datetime import datetime
 import time
+import threading
 
 
 
@@ -81,8 +82,7 @@ class bm_class_arduino_hum_and_temp():
             print("     trying again in 5s")
             time.sleep(5)
 
-    def start_reading_in_loop(self):
+    def start_reading_in_thread(self):
 
-        while True:
-
-            self.read_serial()
+        x = threading.Thread(target=self.read_serial)
+        x.start()
