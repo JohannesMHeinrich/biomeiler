@@ -44,8 +44,13 @@ class bm_class_6147_weather_station():
 
 
     # Callback function for station data callback
-    def cb_station_data(self, identifier, temperature, humidity, wind_speed, gust_speed, rain, wind_direction, battery_low):
+    def cb_station_data(self, 116, temperature, humidity, wind_speed, gust_speed, rain, wind_direction, battery_low):
 
+        print(float(temperature/10.0), datetime.utcnow())
+        print(float(humidity), datetime.utcnow())
+        print(float(wind_speed/10.0), datetime.utcnow())
+        print(float(gust_speed/10.0), datetime.utcnow())
+        print(float(rain/10.0), datetime.utcnow())
 
         if wind_direction == BrickletOutdoorWeather.WIND_DIRECTION_N:
             wind_direction = 360.0
@@ -84,11 +89,6 @@ class bm_class_6147_weather_station():
         else:
             pass
     
-        print(float(temperature/10.0), datetime.utcnow())
-        print(float(humidity), datetime.utcnow())
-        print(float(wind_speed/10.0), datetime.utcnow())
-        print(float(gust_speed/10.0), datetime.utcnow())
-        print(float(rain/10.0), datetime.utcnow())
         print(float(wind_direction), datetime.utcnow())
 
 
