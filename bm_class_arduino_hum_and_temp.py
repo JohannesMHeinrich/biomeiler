@@ -27,6 +27,27 @@ class bm_class_arduino_hum_and_temp():
 
         self.ser = serial.Serial('/dev/ttyUSB0', 9600)
 
+        self.time_now = 'NaN'
+
+        self.rel_hum_1 = 'NaN'
+        self.rel_hum_2 = 'NaN'
+        self.rel_hum_3 = 'NaN'
+
+        self.temp_01 = 'NaN'
+        self.temp_02 = 'NaN'
+        self.temp_03 = 'NaN'
+        self.temp_04 = 'NaN'
+        self.temp_05 = 'NaN'
+        self.temp_06 = 'NaN'
+        self.temp_07 = 'NaN'
+        self.temp_08 = 'NaN'
+        self.temp_09 = 'NaN'
+        self.temp_10 = 'NaN'
+        self.temp_11 = 'NaN'
+        self.temp_12 = 'NaN'
+
+        print('---> started class bm_class_arduino_hum_and_temp')
+        print('     sleeping for 5secs for arduino to boot properly')
         time.sleep(5)
 
     def read_serial(self):
@@ -35,34 +56,29 @@ class bm_class_arduino_hum_and_temp():
         
         try:
         
-            bf_1 = float(b[0][10:-2])
-            bf_2 = float(b[1][9:-2])
-            bf_3 = float(b[2][9:-2])
-            
-            T_1 = float(b[3][25:-2])
-            T_2 = float(b[4][25:-2])
-            T_3 = float(b[5][25:-2])
-            T_4 = float(b[6][25:-2])
+            self.time_now = datetime.utcnow()
 
-            T_5 = float(b[7][25:-2])
-            T_6 = float(b[8][25:-2])
-            T_7 = float(b[9][25:-2])
-            T_8 = float(b[10][25:-2])
+            self.rel_hum_1 = float(b[0][10:-2])
+            self.rel_hum_2 = float(b[1][9:-2])
+            self.rel_hum_3 = float(b[2][9:-2])
             
-            T_9 = float(b[11][25:-2])
-            T_10 = float(b[12][25:-2])
-            T_11 = float(b[13][25:-2])
-            T_12 = float(b[14][25:-2])
-            
-            time_now = datetime.utcnow()
-
-            print(str(bf_1), str(bf_2), str(bf_3))
-            print(str(T_1), str(T_2), str(T_3), str(T_4), str(T_5), str(T_6), str(T_7), str(T_8), str(T_9), str(T_10), str(T_11), str(T_12))
+            self.temp_01 = float(b[3][25:-2])
+            self.temp_02 = float(b[4][25:-2])
+            self.temp_03 = float(b[5][25:-2])
+            self.temp_04 = float(b[6][25:-2])
+            self.temp_05 = float(b[7][25:-2])
+            self.temp_06 = float(b[8][25:-2])
+            self.temp_07 = float(b[9][25:-2])
+            self.temp_08 = float(b[10][25:-2])
+            self.temp_09 = float(b[11][25:-2])
+            self.temp_10 = float(b[12][25:-2])
+            self.temp_11 = float(b[13][25:-2])
+            self.temp_12 = float(b[14][25:-2])
             
         except:
             
-            print("could not convert to floats")
-            print("trying again in 5s")
+            print("---> arduino: could not convert to floats")
+            print("     trying again in 5s")
             time.sleep(5)
 
     def start_reading_in_loop(self):
@@ -70,8 +86,3 @@ class bm_class_arduino_hum_and_temp():
         while True:
 
             self.read_serial()
-
-
-
-c = bm_class_arduino_hum_and_temp()
-c.start_reading_in_loop()

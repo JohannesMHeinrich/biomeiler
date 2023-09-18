@@ -29,6 +29,15 @@ class bm_class_6147_weather_station():
         self.PORT = 4223
         self.UID = "SwJ"                                                        # Change XYZ to the UID of your CO2 Bricklet 2.0
 
+        self.time_now = 'NaN'
+        self.temperature = 'NaN'
+        self.humidity = 'NaN'
+        self.wind_speed = 'NaN'
+        self.gust_speed = 'NaN'
+        self.rain = 'NaN'
+        self.wind_direction = 'NaN'
+        self.battery_low = 'NaN'
+
         ipcon = IPConnection()                                                  # Create IP connection
         ow = BrickletOutdoorWeather(self.UID, ipcon)                            # Create device object
 
@@ -39,18 +48,11 @@ class bm_class_6147_weather_station():
         ow.set_station_callback_configuration(True)                             # Enable station data callbacks  
         ow.register_callback(ow.CALLBACK_STATION_DATA, self.cb_station_data)    # Register station data callback to function cb_station_data
 
-        input("Press key to exit ")
-        ipcon.disconnect()
+        print('---> started class bm_class_6147_weather_station')
 
 
     # Callback function for station data callback
     def cb_station_data(self, identifier, temperature, humidity, wind_speed, gust_speed, rain, wind_direction, battery_low):
-
-        print(float(temperature/10.0), datetime.utcnow())
-        print(float(humidity), datetime.utcnow())
-        print(float(wind_speed/10.0), datetime.utcnow())
-        print(float(gust_speed/10.0), datetime.utcnow())
-        print(float(rain/10.0), datetime.utcnow())
 
         if wind_direction == BrickletOutdoorWeather.WIND_DIRECTION_N:
             wind_direction = 360.0
@@ -89,8 +91,11 @@ class bm_class_6147_weather_station():
         else:
             pass
     
-        print(float(wind_direction), datetime.utcnow())
-
-
-
-c = bm_class_6147_weather_station()
+        self.time_now = datetime.utcnow()
+        self.temperature = float(temperature/10.0)
+        self.humidity = float(humidity)
+        self.wind_speed = float(wind_speed/10.0)
+        self.gust_speed = float(gust_speed/10.0)
+        self.rain = float(rain/10.0)
+        self.wind_direction = float(wind_direction)
+        self.battery_low = str(battery_low)
