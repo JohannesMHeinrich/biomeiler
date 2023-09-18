@@ -12,23 +12,27 @@ from datetime import datetime
 from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_co2_v2 import BrickletCO2V2
 
-from my_file_writer import my_writer
+# from my_file_writer import my_writer
 
-from my_py_c_influxdb_2_1 import my_py_c_influxdb_2_1
+# from my_py_c_influxdb_2_1 import my_py_c_influxdb_2_1
 
 
-# initialize connector to influx db
-influxDB = my_py_c_influxdb_2_1()
+# # initialize connector to influx db
+# influxDB = my_py_c_influxdb_2_1()
 
 
 # Callback function for all values callback
 def cb_all_values(co2_concentration, temperature, humidity):
     
-    my_writer('CO2', [str(co2_concentration) + " ppm", str(temperature/100.0) + " C", str(humidity/100.0) + " %RH"])
+    # my_writer('CO2', [str(co2_concentration) + " ppm", str(temperature/100.0) + " C", str(humidity/100.0) + " %RH"])
     
-    influxDB.write_data_point("CO2_Sensor", "CO2", float(co2_concentration), datetime.utcnow())
-    influxDB.write_data_point("CO2_Sensor", "Temperatur", float(temperature/100.0), datetime.utcnow())
-    influxDB.write_data_point("CO2_Sensor", "Feuchtigkeit", float(humidity/100.0), datetime.utcnow())
+    # influxDB.write_data_point("CO2_Sensor", "CO2", float(co2_concentration), datetime.utcnow())
+    # influxDB.write_data_point("CO2_Sensor", "Temperatur", float(temperature/100.0), datetime.utcnow())
+    # influxDB.write_data_point("CO2_Sensor", "Feuchtigkeit", float(humidity/100.0), datetime.utcnow())
+
+    print(float(co2_concentration), datetime.utcnow())
+    print(float(temperature/100.0), datetime.utcnow())
+    print(float(humidity/100.0), datetime.utcnow())
     
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
