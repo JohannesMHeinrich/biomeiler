@@ -78,6 +78,7 @@ if __name__ == "__main__":
 
     # Register station data callback to function cb_station_data
     ow.register_callback(ow.CALLBACK_STATION_DATA, cb_station_data)
+    ow.set_all_values_callback_configuration(1000, False)                  # Set period for all values callback to 1s (1000ms)
 
     # Register sensor data callback to function cb_sensor_data
     ow.register_callback(ow.CALLBACK_SENSOR_DATA, cb_sensor_data)
