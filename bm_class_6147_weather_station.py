@@ -32,7 +32,7 @@ class bm_class_6147_weather_station():
         ipcon = IPConnection()                                                  # Create IP connection
         ow = BrickletOutdoorWeather(self.UID, ipcon)                            # Create device object
 
-        ipcon.connect(self.HOST, self.PORT)                                               # Connect to brickd
+        ipcon.connect(self.HOST, self.PORT)                                     # Connect to brickd
 
         # Don't use device before ipcon is connected
 
@@ -81,6 +81,8 @@ class bm_class_6147_weather_station():
             wind_direction = 337.5
         elif wind_direction == BrickletOutdoorWeather.WIND_DIRECTION_ERROR:
             wind_direction = -100
+        else:
+            pass
     
         print(float(temperature/10.0), datetime.utcnow())
         print(float(humidity), datetime.utcnow())
