@@ -1,0 +1,26 @@
+1) write new raspberry pi image on 32gb sd card: https://www.raspberrypi.com/software/
+2) username: bm
+   password: bm
+   ip: 141.82.100.50
+   country and timezone: germany and berlin
+   language: english
+   software update
+   -> doesn't work, manually set time and location, reboot
+   -> doesn't work
+   -> setting time behind firewall didn't work - use mobil phone as hotspot -> works
+2) sudo apt-get update
+   sudo apt-get upgrade
+   sudo apt automremove
+   -> doesn't work - different fixes also don't work, retry new install
+3) new image:
+   username: bm
+   password: bm
+   ip: 141.82.100.50
+   cannot set time and location - as usual. also doesn't work with wifi provided by mobil phone
+   sudo apt update
+   sudo apt full-upgrade
+   -> problems, aborted by itself
+4) install xrdp for windows remote desktop, for example: https://pimylifeup.com/raspberry-pi-remote-desktop/
+   new user: bm-user
+   pw: bm
+   
