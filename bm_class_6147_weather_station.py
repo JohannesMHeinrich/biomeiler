@@ -37,7 +37,7 @@ class bm_class_6147_weather_station():
         # Don't use device before ipcon is connected
 
         ow.set_station_callback_configuration(True)                             # Enable station data callbacks  
-        ow.register_callback(ow.CALLBACK_STATION_DATA, cb_station_data)         # Register station data callback to function cb_station_data
+        ow.register_callback(ow.CALLBACK_STATION_DATA, self.cb_station_data)    # Register station data callback to function cb_station_data
 
         input("Press key to exit ")
         ipcon.disconnect()
