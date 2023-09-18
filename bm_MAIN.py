@@ -30,7 +30,7 @@ class c_program():
         self.client = self.mqtt_publish.connect_mqtt()
         self.client.loop_start()
 
-
+        self.c_CO2 = bm_class_CO2()
         self.payload_CO2_CO2 = 'NaN'
 
         thread_CO2 = threading.Thread(target=self.start_CO2)
@@ -43,8 +43,6 @@ class c_program():
 
 
     def start_CO2(self):
-
-        self.c_CO2 = bm_class_CO2()
 
         CO2 = {
             'Timestamp': self.c_CO2.time_now,
