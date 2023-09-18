@@ -77,14 +77,14 @@ class bm_class_arduino_hum_and_temp():
                 self.temp_10 = float(b[12][25:-2])
                 self.temp_11 = float(b[13][25:-2])
                 self.temp_12 = float(b[14][25:-2])
+
+                time.sleep(60)
                 
             except:
                 
                 print("---> arduino: could not convert to floats")
                 print("     trying again in 5s")
                 time.sleep(5)
-
-            time.sleep(60)
 
     def start_reading_in_thread(self):
 
