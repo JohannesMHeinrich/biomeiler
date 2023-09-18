@@ -5,14 +5,14 @@
 
 import serial
 
-from my_file_writer import my_writer
+# from my_file_writer import my_writer
 from datetime import datetime
 import time
 
-from my_py_c_influxdb_2_1 import my_py_c_influxdb_2_1
+# from my_py_c_influxdb_2_1 import my_py_c_influxdb_2_1
 
-# initialize connector to influx db
-influxDB = my_py_c_influxdb_2_1()
+# # initialize connector to influx db
+# influxDB = my_py_c_influxdb_2_1()
 
 ser = serial.Serial('/dev/ttyUSB0', 9600)
 
