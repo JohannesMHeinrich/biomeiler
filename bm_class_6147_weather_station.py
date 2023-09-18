@@ -44,7 +44,7 @@ class bm_class_6147_weather_station():
 
 
     # Callback function for station data callback
-    def cb_station_data(self, 116, temperature, humidity, wind_speed, gust_speed, rain, wind_direction, battery_low):
+    def cb_station_data(self, '116', temperature, humidity, wind_speed, gust_speed, rain, wind_direction, battery_low):
 
         print(float(temperature/10.0), datetime.utcnow())
         print(float(humidity), datetime.utcnow())
