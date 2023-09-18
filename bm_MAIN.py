@@ -32,6 +32,8 @@ class c_program():
         self.start_arduino_hum_and_temp()
 
         self.mqtt_publish = bm_class_mqtt_publish()
+        self.client = self.mqtt_publish.connect_mqtt()
+        self.client.loop_start()
 
     def start_CO2(self):
 
@@ -44,7 +46,7 @@ class c_program():
 
         payload_CO2 = json.dumps(CO2)
 
-        self.mqtt_publish.publish_bm_data_json(payload_CO2)
+        self.mqtt_publish.publish_bm_data_json(self.client, payload_CO2)
 
     def start_6147_weather_station(self):
 
