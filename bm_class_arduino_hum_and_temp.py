@@ -31,7 +31,7 @@ class bm_class_arduino_hum_and_temp():
 
     def read_serial(self):
 
-        b = str(ser.readline()).split(',')
+        b = str(self.ser.readline()).split(',')
         
         try:
         
