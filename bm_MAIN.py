@@ -52,3 +52,5 @@ class c_program():
             print(self.c_6147.temperature)
             print(self.c_hum_and_temp.rel_hum_1)
 
+
+c = c_program()
