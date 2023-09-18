@@ -69,5 +69,5 @@ class bm_class_mqtt_publish():
 
 
 
-c = bm_class_mqtt_publish
+c = bm_class_mqtt_publish()
 c.run()
