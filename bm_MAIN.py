@@ -66,7 +66,7 @@ class c_program():
 
     def run(self, intervall = 900):
 
-        self.mqtt_publish.publish_bm_data_json(self.client, self.payload_CO2)
+        self.mqtt_publish.publish_bm_data_json(self.client, self.payload_CO2_CO2)
 
         # while True:
 
