@@ -25,15 +25,15 @@ class c_program():
 
     def __init__(self):
 
-        self.counter = 0
+        self.mqtt_publish = bm_class_mqtt_publish()
+        self.client = self.mqtt_publish.connect_mqtt()
+        self.client.loop_start()
 
         self.start_CO2()
         self.start_6147_weather_station()
         self.start_arduino_hum_and_temp()
 
-        self.mqtt_publish = bm_class_mqtt_publish()
-        self.client = self.mqtt_publish.connect_mqtt()
-        self.client.loop_start()
+
 
     def start_CO2(self):
 
