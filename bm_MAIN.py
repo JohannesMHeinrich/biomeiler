@@ -13,6 +13,7 @@ tbf
 from datetime import datetime, timedelta
 import time
 import json
+import threading
 
 from bm_class_CO2 import bm_class_CO2
 from bm_class_6147_weather_station import bm_class_6147_weather_station
@@ -29,7 +30,13 @@ class c_program():
         self.client = self.mqtt_publish.connect_mqtt()
         self.client.loop_start()
 
-        self.start_CO2()
+
+        self.payload_CO2_CO2 = 'NaN'
+
+        thread_CO2 = threading.Thread(target=self.start_CO2)
+        thread_CO2.start()
+
+        # self.start_CO2()
         self.start_6147_weather_station()
         self.start_arduino_hum_and_temp()
 
@@ -44,9 +51,9 @@ class c_program():
             'CO2': self.c_CO2.CO2
         }
 
-        payload_CO2 = json.dumps(CO2)
+        self.payload_CO2_CO2 = json.dumps(CO2)
 
-        self.mqtt_publish.publish_bm_data_json(self.client, payload_CO2)
+
 
     def start_6147_weather_station(self):
 
@@ -59,13 +66,15 @@ class c_program():
 
     def run(self, intervall = 900):
 
-        while True:
+        self.mqtt_publish.publish_bm_data_json(self.client, self.payload_CO2)
 
-            print(self.c_CO2.CO2)
-            print(self.c_6147.temperature)
-            print(self.c_hum_and_temp.rel_hum_1)
+        # while True:
 
-            time.sleep(intervall)
+        #     print(self.c_CO2.CO2)
+        #     print(self.c_6147.temperature)
+        #     print(self.c_hum_and_temp.rel_hum_1)
+
+        #     time.sleep(intervall)
 
 
 c = c_program()
