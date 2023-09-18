@@ -12,10 +12,12 @@ tbf
 
 from datetime import datetime, timedelta
 import time
+import json
 
 from bm_class_CO2 import bm_class_CO2
 from bm_class_6147_weather_station import bm_class_6147_weather_station
 from bm_class_arduino_hum_and_temp import bm_class_arduino_hum_and_temp
+from bm_class_mqtt_publish import bm_class_mqtt_publish
 
 
 
@@ -29,9 +31,20 @@ class c_program():
         self.start_6147_weather_station()
         self.start_arduino_hum_and_temp()
 
+        self.mqtt_publish = bm_class_mqtt_publish()
+
     def start_CO2(self):
 
         self.c_CO2 = bm_class_CO2()
+
+        CO2 = {
+            'Timestamp': self.c_CO2.time_now,
+            'CO2': self.c_CO2.CO2
+        }
+
+        payload_CO2 = json.dumps(CO2)
+
+        self.mqtt_publish.publish_bm_data_json(payload_CO2)
 
     def start_6147_weather_station(self):
 

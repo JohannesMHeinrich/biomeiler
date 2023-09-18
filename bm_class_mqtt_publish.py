@@ -15,6 +15,7 @@ tbf
 from paho.mqtt import client as mqtt_client
 import random
 import time
+import json
 
 
 
@@ -57,6 +58,19 @@ class bm_class_mqtt_publish():
             status = result[0]
             if status == 0:
                 print(f"Send `{msg}` to topic `{self.topic}`")
+            else:
+                print(f"Failed to send message to topic {self.topic}")
+            msg_count += 1
+
+
+    def publish_bm_data_json(self, client, data):
+        while True:
+            time.sleep(1)
+            result = client.publish(self.topic, data)
+            # result: [0, 1]
+            status = result[0]
+            if status == 0:
+                print(f"Send `{data}` to topic `{self.topic}`")
             else:
                 print(f"Failed to send message to topic {self.topic}")
             msg_count += 1
