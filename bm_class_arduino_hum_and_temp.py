@@ -78,7 +78,7 @@ class bm_class_arduino_hum_and_temp():
                 self.temp_11 = float(b[13][25:-2])
                 self.temp_12 = float(b[14][25:-2])
 
-                time.sleep(60)
+                time.sleep(5)
                 
             except:
                 

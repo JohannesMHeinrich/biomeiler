@@ -24,13 +24,15 @@ class bm_class_mqtt_publish():
     def __init__(self):
 
 
-        self.broker = '141.82.98.208'
-        self.port = 1883
+#         self.broker = '141.82.98.208'
+#         self.port = 1883
+        self.broker = '9cfa2865b0044c9987b33f563af5e70d.s2.eu.hivemq.cloud'
+        self.port = 8884
         self.topic = "biomeiler"
 
         # generate client ID with pub prefix randomly
         self.client_id = f'python-mqtt-{random.randint(0, 1000)}'
-        self.username = 'Sonde'
+        self.username = 'JohannesMatthias.Heinrich@HS-Augsburg.DE'
         self.password = 'Sonde1609'
 
 
@@ -64,15 +66,15 @@ class bm_class_mqtt_publish():
 
 
     def publish_bm_data_json(self, client, data):
-        while True:
-            time.sleep(1)
-            result = client.publish(self.topic, data)
-            # result: [0, 1]
-            status = result[0]
-            if status == 0:
-                print(f"Send `{data}` to topic `{self.topic}`")
-            else:
-                print(f"Failed to send message to topic {self.topic}")
+#         while True:
+#             time.sleep(1)
+        result = client.publish(self.topic, data)
+        # result: [0, 1]
+        status = result[0]
+        if status == 0:
+            print(f"Send `{data}` to topic `{self.topic}`")
+        else:
+            print(f"Failed to send message to topic {self.topic}")
 
 
     def run(self):
