@@ -13,6 +13,7 @@ tbf
 
 
 from paho.mqtt import client as mqtt_client
+import ssl
 import random
 import time
 import json
@@ -23,17 +24,14 @@ class bm_class_mqtt_publish():
 
     def __init__(self):
 
-
-#         self.broker = '141.82.98.208'
-#         self.port = 1883
         self.broker = '9cfa2865b0044c9987b33f563af5e70d.s2.eu.hivemq.cloud'
-        self.port = 8884
+        self.port = 8883
         self.topic = "biomeiler"
 
         # generate client ID with pub prefix randomly
-        self.client_id = f'python-mqtt-{random.randint(0, 1000)}'
-        self.username = 'JohannesMatthias.Heinrich@HS-Augsburg.DE'
-        self.password = 'Sonde1609'
+        # self.client_id = f'python-mqtt-{random.randint(0, 1000)}'
+        self.username = 'bm-user'
+        self.password = ',N:>6:6L_fXr7!f'
 
 
     def connect_mqtt(self):
@@ -43,10 +41,11 @@ class bm_class_mqtt_publish():
             else:
                 print("Failed to connect, return code %d\n", rc)
 
-        client = mqtt_client.Client(self.client_id)                                  # Set Connecting Client ID
+        client = mqtt_client.Client()                                  # Set Connecting Client ID
         client.username_pw_set(self.username, self.password)
+        client.tls_set_context(context=ssl.create_default_context())
         client.on_connect = on_connect
-        client.connect(self.broker, self.port)
+        client.connect(self.broker, self.port, 60)
         return client
 
 
