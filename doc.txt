@@ -41,3 +41,11 @@
 10) update firmware bricklets, no update firmware masterbrick
 11) changed batteries weather station
 12) tests succesfull for all sensors
+13) mqtt within HSA network working
+14) https://console.hivemq.cloud/
+    username: JohannesMatthias.Heinrich@HS-Augsburg.DE
+    password: Sonde1609
+15) github token biomeiler: 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
+16) new user hive mq:
+    bm-user
+    ,N:>6:6L_fXr7!f
